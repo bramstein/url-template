@@ -1,0 +1,12 @@
+{
+    "name": "uri-template",
+    "version": "1.0.0",
+    "author": "Bram Stein <b.l.stein@gmail.com> (http://www.bramstein.com)",
+    "devDependencies": {
+        "mocha": "=1.6.0",
+        "expect.js": "=0.2.0"
+    },
+    "scripts": {
+        "test": "mocha --reporter spec"
+    }
+}
