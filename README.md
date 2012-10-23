@@ -1,10 +1,10 @@
-==A JavaScript URI template implementation
+## A JavaScript URI template implementation
 
 * RFC 6570 compatible
 * simple
 * fast
 
-==Example
+## Example
 
     var template = require('uri-template');
 
