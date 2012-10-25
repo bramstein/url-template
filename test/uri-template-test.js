@@ -159,8 +159,27 @@ describe('uri-template', function () {
                     'dot': '.',
                     'comma': ','
                 },
-                'number': 2133
+                "chars": {
+                    'ü': 'ü'
+                },
+                'number': 2133,
+                'emptylist': [],
+                'emptyobject': {}
             });
+
+        it('variable empty list', function () {
+            assert('{/emptylist}', '');
+            assert('{/emptylist*}', '');
+            assert('{?emptylist}', '?emptylist=');
+            assert('{?emptylist*}', '');
+        });
+
+        it('variable empty object', function () {
+            assert('{/emptyobject}', '');
+            assert('{/emptyobject*}', '');
+            assert('{?emptyobject}', '?emptyobject=');
+            assert('{?emptyobject*}', '');
+        });
 
         it('variable modifiers prefix', function () {
             assert('{var:3}', 'val');
