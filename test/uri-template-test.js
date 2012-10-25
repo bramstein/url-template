@@ -11,9 +11,18 @@ describe('uri-template', function () {
     describe('Level 1', function () {
         var assert = createTestContext({
                 'var': 'value',
+                'some.value': 'some',
+                'some_value': 'value',
+                'Some%20Thing': 'hello',
                 'foo': 'bar',
                 'hello': 'Hello World!',
-                'bool': false
+                'bool': false,
+                'toString': 'string',
+                'number': 42,
+                'float': 3.14,
+                'undef': undefined,
+                'null': null,
+                'chars': 'šöäŸœñê€£¥‡ÑÒÓÔÕÖ×ØÙÚàáâãäåæçÿü'
             });
 
         it('empty string', function () {
@@ -23,10 +32,42 @@ describe('uri-template', function () {
         it('encodes non expressions correctly', function () {
             assert('hello/world', 'hello/world');
             assert('Hello World!/{foo}', 'Hello%20World!/bar');
+            assert(':/?#[]@!$&()*+,;=\'', ':/?#[]@!$&()*+,;=\'');
+            assert('%20', '%20');
+            assert('%xyz', '%25xyz');
+            assert('%', '%25');
         });
 
         it('expand plain ASCII strings', function () {
             assert('{var}', 'value');
+        });
+
+        it('expand non-ASCII strings', function () {
+            assert('{chars}', '%C5%A1%C3%B6%C3%A4%C5%B8%C5%93%C3%B1%C3%AA%E2%82%AC%C2%A3%C2%A5%E2%80%A1%C3%91%C3%92%C3%93%C3%94%C3%95%C3%96%C3%97%C3%98%C3%99%C3%9A%C3%A0%C3%A1%C3%A2%C3%A3%C3%A4%C3%A5%C3%A6%C3%A7%C3%BF%C3%BC');
+        });
+
+        it('expand expressions with dot and underscore', function () {
+            assert('{some.value}', 'some');
+            assert('{some_value}', 'value');
+        });
+
+        it('expand expressions with encoding', function () {
+            assert('{Some%20Thing}', 'hello');
+        });
+
+        it('expand expressions with reserved JavaScript names', function () {
+            assert('{toString}', 'string');
+        });
+
+        it('expand variables that are not strings', function () {
+            assert('{number}', '42');
+            assert('{float}', '3.14');
+            assert('{bool}', 'false');
+        });
+
+        it('expand variables that are undefined or null', function () {
+            assert('{undef}', '');
+            assert('{null}', '');
         });
 
         it('expand multiple values', function () {
@@ -35,10 +76,6 @@ describe('uri-template', function () {
 
         it('escape invalid characters correctly', function () {
             assert('{hello}', 'Hello%20World!');
-        });
-
-        it('handles boolean values', function () {
-            assert('{bool}', 'false');
         });
     });
 
