@@ -1,6 +1,5 @@
 var template = require('../lib/uri-template'),
-    expect = require("expect.js"),
-    spec_examples = require('./data/spec-examples.json');
+    expect = require("expect.js");
 
 function createTestContext(c) {
     return function (t, r) {
