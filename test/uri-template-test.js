@@ -241,5 +241,34 @@ describe('uri-template', function () {
             assert('{?keys*}', '?semi=%3B&dot=.&comma=%2C');
             assert('{&keys*}', '&semi=%3B&dot=.&comma=%2C')
         });
+
+    describe('Error handling (or the lack thereof)', function () {
+        var assert = createTestContext({
+                foo: 'test',
+                keys: {
+                    foo: 'bar'
+                }
+            });
+
+        it('does not expand invalid expressions', function () {
+            assert('{test', '{test');
+            assert('test}', 'test}');
+            assert('{{test}}', '{}'); // TODO: Is this acceptable?
+        });
+
+        it('does not expand with incorrect operators', function () {
+            assert('{@foo}', ''); // TODO: This will try to match a variable called `@foo` which will fail because it is not in our context. We could catch this by ignoring reserved operators?
+            assert('{$foo}', ''); // TODO: Same story, but $ is not a reserved operator.
+            assert('{++foo}', '');
+        });
+
+        it('ignores incorrect prefixes', function () {
+            assert('{foo:test}', 'test'); // TODO: Invalid prefixes are ignored. We could throw an error.
+            assert('{foo:2test}', 'te'); // TODO: Best effort is OK?
+        });
+
+        it('prefix applied to the wrong context', function () {
+            assert('{keys:1}', 'foo,bar');
+        });
     });
 });
