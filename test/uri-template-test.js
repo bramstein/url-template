@@ -242,6 +242,11 @@ describe('uri-template', function () {
             assert('{&keys*}', '&semi=%3B&dot=.&comma=%2C')
         });
 
+        it('encodes associative arrays correctly', function () {
+            assert('{chars*}', '%C3%BC=%C3%BC');
+        });
+    });
+
     describe('Error handling (or the lack thereof)', function () {
         var assert = createTestContext({
                 foo: 'test',
