@@ -32,7 +32,7 @@ describe('uri-template', function () {
         it('encodes non expressions correctly', function () {
             assert('hello/world', 'hello/world');
             assert('Hello World!/{foo}', 'Hello%20World!/bar');
-            assert(':/?#[]@!$&()*+,;=\'', ':/?#[]@!$&()*+,;=\'');
+            assert(':/?#[]@!$&()*+,;=\'', ':/?#%5B%5D@!$&()*+,;=\'');
             assert('%20', '%20');
             assert('%xyz', '%25xyz');
             assert('%', '%25');
@@ -247,6 +247,37 @@ describe('uri-template', function () {
         });
     });
 
+    describe('Encoding', function () {
+        var assert = createTestContext({
+                restricted: ":/?#[]@!$&()*+,;='",
+                percent: '%',
+                encoded: '%25',
+                'pctencoded%20name': '',
+                mapWithEncodedName: {
+                    'encoded%20name': ''
+                },
+                mapWithRestrictedName: {
+                    'restricted=name': ''
+                },
+                mapWidthUmlautName: {
+                    'ümlaut': ''
+                }
+            });
+
+        it('passes through percent encoded values', function () {
+            assert('{percent}', '%25');
+            assert('{+encoded}', '%25');
+        });
+
+        it('encodes restricted characters correctly', function () {
+            assert('{restricted}', '%3A%2F%3F%23%5B%5D%40!%24%26()*%2B%2C%3B%3D\'');
+            assert('{/restricted}', '/%3A%2F%3F%23%5B%5D%40!%24%26()*%2B%2C%3B%3D\'');
+            assert('{;restricted}', ';restricted=%3A%2F%3F%23%5B%5D%40!%24%26()*%2B%2C%3B%3D\'');
+            assert('{.restricted}', '.%3A%2F%3F%23%5B%5D%40!%24%26()*%2B%2C%3B%3D\'');
+            assert('{?restricted}', '?restricted=%3A%2F%3F%23%5B%5D%40!%24%26()*%2B%2C%3B%3D\'');
+            assert('{&restricted}', '&restricted=%3A%2F%3F%23%5B%5D%40!%24%26()*%2B%2C%3B%3D\'');
+        });
+    });
     describe('Error handling (or the lack thereof)', function () {
         var assert = createTestContext({
                 foo: 'test',
