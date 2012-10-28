@@ -163,8 +163,11 @@ describe('uri-template', function () {
                     'ü': 'ü'
                 },
                 'number': 2133,
+                'emptystring': '',
                 'emptylist': [],
-                'emptyobject': {}
+                'emptyobject': {},
+                'undefinedlistitem': [1,,2],
+                'undefinedobjectitem': { key: null, hello: 'world' }
             });
 
         it('variable empty list', function () {
@@ -179,6 +182,25 @@ describe('uri-template', function () {
             assert('{/emptyobject*}', '');
             assert('{?emptyobject}', '?emptyobject=');
             assert('{?emptyobject*}', '');
+        });
+
+        it('variable undefined list item', function () {
+            assert('{undefinedlistitem}', '1,2');
+        });
+
+        it('variable undefined object item', function () {
+            assert('{undefinedobjectitem}', ',hello,world');
+        });
+
+        it('variable empty string', function () {
+            assert('{emptystring}', '');
+            assert('{+emptystring}', '');
+            assert('{#emptystring}', '#');
+            assert('{.emptystring}', '.');
+            assert('{/emptystring}', '/');
+            assert('{;emptystring}', ';emptystring');
+            assert('{?emptystring}', '?emptystring=');
+            assert('{&emptystring}', '&emptystring=');
         });
 
         it('variable modifiers prefix', function () {
