@@ -172,7 +172,7 @@ describe('uri-template', function () {
                 'emptylist': [],
                 'emptyobject': {},
                 'undefinedlistitem': [1,,2],
-                'undefinedobjectitem': { key: null, hello: 'world' }
+                'undefinedobjectitem': { key: null, hello: 'world', 'empty': '', '': 'nothing' }
             });
 
         it('variable empty list', function () {
@@ -191,10 +191,13 @@ describe('uri-template', function () {
 
         it('variable undefined list item', function () {
             assert('{undefinedlistitem}', '1,2');
+            assert('{undefinedlistitem*}', '1,2');
+            assert('{?undefinedlistitem*}', '?undefinedlistitem=1&undefinedlistitem=2');
         });
 
         it('variable undefined object item', function () {
-            assert('{undefinedobjectitem}', ',hello,world');
+            assert('{undefinedobjectitem}', 'hello,world,empty,,,nothing');
+            assert('{undefinedobjectitem*}', 'hello=world,empty=,nothing');
         });
 
         it('variable empty string', function () {
