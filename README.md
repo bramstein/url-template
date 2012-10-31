@@ -4,7 +4,7 @@ This is a simple URI template implementation following the [RFC 6570 URI Templat
 
 ## Installation
 
-   > npm install url-template
+    > npm install url-template
 
 ## Example
 
