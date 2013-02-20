@@ -12,7 +12,7 @@
         "type": "git",
         "url": "git://github.com/bramstein/url-template.git"
     },
-    "main": "./lib/uri-template",
+    "main": "./lib/url-template.js",
     "directories": {
         "lib": "./lib"
     },

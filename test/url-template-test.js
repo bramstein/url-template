@@ -1,4 +1,4 @@
-var UrlTemplate = require('../lib/uri-template'),
+var UrlTemplate = require('../lib/url-template.js'),
     expect = require("expect.js");
 
 function createTestContext(c) {
