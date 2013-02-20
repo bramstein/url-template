@@ -4,9 +4,11 @@ This is a simple URI template implementation following the [RFC 6570 URI Templat
 
 ## Installation
 
-    > npm install url-template
+For use with Node.js you can install it through npm:
 
-If you want to use it in a browser, copy `lib/uri-template.js` into your project and remove the `module.exports = createUrlTemplate;` line at the end of the file.
+    $ npm install url-template
+
+If you want to use it in a browser, copy `lib/url-template.js` into your project and remove the `module.exports = UrlTemplate;` line at the end of the file.
 
 ## Example
 
