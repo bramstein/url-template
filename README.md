@@ -6,15 +6,18 @@ This is a simple URI template implementation following the [RFC 6570 URI Templat
 
     > npm install url-template
 
+If you want to use it in a browser, copy `lib/uri-template.js` into your project and remove the `module.exports = createUrlTemplate;` line at the end of the file.
+
 ## Example
 
-    var template = require('url-template');
+    var UrlTemplate = require('url-template'),
+        urlTemplate = new UrlTemplate();
 
     ...
 
-    var createUrl = template('/{email}/{folder}/{id}');
+    var template = urlTemplate.parse('/{email}/{folder}/{id}');
 
-    var url = createUrl({
+    var url = template.expand({
            user: 'user@domain',
            folder: 'test',
            id: 42
