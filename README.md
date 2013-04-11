@@ -8,24 +8,22 @@ For use with Node.js you can install it through npm:
 
     $ npm install url-template
 
-If you want to use it in a browser, copy `lib/url-template.js` into your project and remove the `module.exports = UrlTemplate;` line at the end of the file.
+If you want to use it in a browser, copy `lib/url-template.js` into your project and remove the `module.exports = new UrlTemplate();` line at the end of the file.
 
 ## Example
 
-    var UrlTemplate = require('url-template'),
-        urlTemplate = new UrlTemplate();
+    var template = require('url-template');
 
     ...
 
-    var template = urlTemplate.parse('/{email}/{folder}/{id}');
+    var emailUrl = template.parse('/{email}/{folder}/{id}');
 
-    var url = template.expand({
-           user: 'user@domain',
-           folder: 'test',
-           id: 42
-        });
-
-    console.log(url); // '/user@domain/test/42'
+    // Returns '/user@domain/test/42'
+    emailUrl.expand({
+      user: 'user@domain',
+      folder: 'test',
+      id: 42
+    });
 
 ## A note on error handling and reporting
 
