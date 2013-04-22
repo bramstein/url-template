@@ -1,5 +1,7 @@
-var UrlTemplate = require('../lib/url-template.js'),
-    expect = require("expect.js");
+if(typeof  require !== 'undefined'){
+  var UrlTemplate = require('../lib/url-template.js'),
+      expect = require("expect.js");
+}
 
 function createTestContext(c) {
   return function (t, r) {
