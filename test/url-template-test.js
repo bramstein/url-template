@@ -1,12 +1,16 @@
-if(typeof  require !== 'undefined'){
-  var UrlTemplate = require('../lib/url-template.js'),
-      expect = require("expect.js");
+var template, expect;
+
+if (typeof require !== 'undefined') {
+  template = require('../lib/url-template.js');
+  expect = require("expect.js");
+} else {
+  template = window.urltemplate;
+  expect = window.expect;
 }
 
 function createTestContext(c) {
   return function (t, r) {
-    var urlTemplate = new UrlTemplate();
-    expect(urlTemplate.parse(t).expand(c)).to.eql(r);
+    expect(template.parse(t).expand(c)).to.eql(r);
   };
 }
 
