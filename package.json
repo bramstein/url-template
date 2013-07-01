@@ -1,6 +1,6 @@
 {
     "name": "url-template",
-    "version": "2.0.1",
+    "version": "2.0.2",
     "decription": "A URI template implementation (RFC 6570 compliant)",
     "author": "Bram Stein <b.l.stein@gmail.com> (http://www.bramstein.com)",
     "keywords": ["uri-template", "uri template", "uri", "url", "rfc 6570", "url template", "url-template"],
