@@ -8,9 +8,9 @@ if (typeof require !== 'undefined') {
   expect = window.expect;
 }
 
-function createTestContext(c) {
+function createTestContext(c, skip) {
   return function (t, r) {
-    expect(template.parse(t).expand(c)).to.eql(r);
+    expect(template.parse(t, skip).expand(c)).to.eql(r);
   };
 }
 
@@ -342,6 +342,41 @@ describe('uri-template', function () {
 
     it('prefix applied to the wrong context', function () {
       assert('{keys:1}', 'foo,bar');
+    });
+  });
+  describe('Skipping empty arguments', function () {
+    var assert = createTestContext({
+          'var': 'value',
+          'number': 2133,
+          'emptystring': '',
+          'emptylist': [],
+          'emptyobject': {},
+          'undefinedlistitem': [1,,2],
+        }, true);
+    it('variable undefined list item', function () {
+      assert('{undefinedlistitem}', '1,2');
+      assert('{undefinedlistitem*}', '1,2');
+      assert('{?undefinedlistitem*}', '?undefinedlistitem=1&undefinedlistitem=2');
+    });
+
+    it('query with empty/undefined arguments', function () {
+      assert('{?var,number}', '?var=value&number=2133');
+      assert('{?undef}', '');
+      assert('{?empty}', '');
+      assert('{?emptylist}', '');
+      assert('{?emptyobject}', '');
+      assert('{?undef,var,empty,emptylist,emptyobject}', '?var=value');
+    });
+
+    it('variable empty string', function () {
+      assert('{emptystring}', '');
+      assert('{+emptystring}', '');
+      assert('{#emptystring}', '');
+      assert('{.emptystring}', '');
+      assert('{/emptystring}', '');
+      assert('{;emptystring}', '');
+      assert('{?emptystring}', '');
+      assert('{&emptystring}', '');
     });
   });
 });
