@@ -344,4 +344,28 @@ describe('uri-template', function () {
       assert('{keys:1}', 'foo,bar');
     });
   });
+  describe('Skipping undefined arguments', function () {
+    var assert = createTestContext({
+          'var': 'value',
+          'number': 2133,
+          'emptystring': '',
+          'emptylist': [],
+          'emptyobject': {},
+          'undefinedlistitem': [1,,2],
+        });
+    it('variable undefined list item', function () {
+      assert('{undefinedlistitem}', '1,2');
+      assert('{undefinedlistitem*}', '1,2');
+      assert('{?undefinedlistitem*}', '?undefinedlistitem=1&undefinedlistitem=2');
+    });
+
+    it('query with empty/undefined arguments', function () {
+      assert('{?var,number}', '?var=value&number=2133');
+      assert('{?undef}', '');
+      assert('{?emptystring}', '?emptystring=');
+      assert('{?emptylist}', '?emptylist=');
+      assert('{?emptyobject}', '?emptyobject=');
+      assert('{?undef,var,emptystring}', '?var=value&emptystring=');
+    });
+  });
 });
