@@ -22,7 +22,7 @@ If you want to use it in a browser, copy `lib/url-template.js` into your project
 
     // Returns '/user@domain/test/42'
     emailUrl.expand({
-      user: 'user@domain',
+      email: 'user@domain',
       folder: 'test',
       id: 42
     });
