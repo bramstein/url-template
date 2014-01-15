@@ -368,4 +368,17 @@ describe('uri-template', function () {
       assert('{?undef,var,emptystring}', '?var=value&emptystring=');
     });
   });
+  describe('Template in context', function () {
+    var assert = createTestContext({
+          'driver': 'postgres',
+          'database': 'mydb',
+          'username': 'postgres',
+          'password': 'blah',
+          'host': 'localhost',
+          '_': '{driver}://{username}:{password}@{host}/{database}'
+        });
+    it('create Postgres URL', function () {
+      assert(null, 'postgres://postgres:blah@localhost/mydb');
+    });
+  });
 });
