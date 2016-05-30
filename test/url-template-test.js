@@ -40,7 +40,7 @@ describe('uri-template', function () {
     it('encodes non expressions correctly', function () {
       assert('hello/world', 'hello/world');
       assert('Hello World!/{foo}', 'Hello%20World!/bar');
-      assert(':/?#[]@!$&()*+,;=\'', ':/?#%5B%5D@!$&()*+,;=\'');
+      assert(':/?#[]@!$&()*+,;=\'', ':/?#[]@!$&()*+,;=\'');
       assert('%20', '%20');
       assert('%xyz', '%25xyz');
       assert('%', '%25');
@@ -87,7 +87,7 @@ describe('uri-template', function () {
     });
 
     it('escape invalid characters correctly', function () {
-      assert('{hello}', 'Hello%20World!');
+      assert('{hello}', 'Hello%20World%21');
     });
   });
 
@@ -121,7 +121,7 @@ describe('uri-template', function () {
 
     it('variables without an operator', function () {
       assert('map?{x,y}', 'map?1024,768');
-      assert('{x,hello,y}', '1024,Hello%20World!,768');
+      assert('{x,hello,y}', '1024,Hello%20World%21,768');
     });
 
     it('variables with the reserved expansion operator', function () {
@@ -307,12 +307,14 @@ describe('uri-template', function () {
     });
 
     it('encodes restricted characters correctly', function () {
-      assert('{restricted}', '%3A%2F%3F%23%5B%5D%40!%24%26()*%2B%2C%3B%3D\'');
-      assert('{/restricted}', '/%3A%2F%3F%23%5B%5D%40!%24%26()*%2B%2C%3B%3D\'');
-      assert('{;restricted}', ';restricted=%3A%2F%3F%23%5B%5D%40!%24%26()*%2B%2C%3B%3D\'');
-      assert('{.restricted}', '.%3A%2F%3F%23%5B%5D%40!%24%26()*%2B%2C%3B%3D\'');
-      assert('{?restricted}', '?restricted=%3A%2F%3F%23%5B%5D%40!%24%26()*%2B%2C%3B%3D\'');
-      assert('{&restricted}', '&restricted=%3A%2F%3F%23%5B%5D%40!%24%26()*%2B%2C%3B%3D\'');
+      assert('{restricted}', '%3A%2F%3F%23%5B%5D%40%21%24%26%28%29%2A%2B%2C%3B%3D%27');
+      assert('{+restricted}', ':/?#[]@!$&()*+,;=\'');
+      assert('{#restricted}', '#:/?#[]@!$&()*+,;=\'');
+      assert('{/restricted}', '/%3A%2F%3F%23%5B%5D%40%21%24%26%28%29%2A%2B%2C%3B%3D%27');
+      assert('{;restricted}', ';restricted=%3A%2F%3F%23%5B%5D%40%21%24%26%28%29%2A%2B%2C%3B%3D%27');
+      assert('{.restricted}', '.%3A%2F%3F%23%5B%5D%40%21%24%26%28%29%2A%2B%2C%3B%3D%27');
+      assert('{?restricted}', '?restricted=%3A%2F%3F%23%5B%5D%40%21%24%26%28%29%2A%2B%2C%3B%3D%27');
+      assert('{&restricted}', '&restricted=%3A%2F%3F%23%5B%5D%40%21%24%26%28%29%2A%2B%2C%3B%3D%27');
     });
   });
   describe('Error handling (or the lack thereof)', function () {
