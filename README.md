@@ -6,26 +6,31 @@ This is a simple URI template implementation following the [RFC 6570 URI Templat
 
 For use with Node.js you can install it through npm:
 
-    $ npm install url-template
+```sh
+$ npm install url-template
+```
 
 If you want to use it in a browser, copy `lib/url-template.js` into your project and use the global `urltemplate` instance. Alternatively you can use [Bower](http://bower.io/) to install this package:
 
-    $ bower install url-template
+```sh
+$ bower install url-template
+```
 
 ## Example
 
-    var template = require('url-template');
+```js
+var template = require('url-template');
 
-    ...
+var emailUrlTemplate = template.parse('/{email}/{folder}/{id}');
+var emailUrl = emailUrlTemplate.expand({
+  email: 'user@domain',
+  folder: 'test',
+  id: 42
+});
 
-    var emailUrl = template.parse('/{email}/{folder}/{id}');
-
-    // Returns '/user@domain/test/42'
-    emailUrl.expand({
-      email: 'user@domain',
-      folder: 'test',
-      id: 42
-    });
+console.log(emailUrl);
+// Returns '/user@domain/test/42'
+```
 
 ## A note on error handling and reporting
 
