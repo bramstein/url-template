@@ -185,8 +185,8 @@ describe('uri-template', function () {
     it('variable empty list', function () {
       assert('{/emptylist}', '');
       assert('{/emptylist*}', '');
-      assert('{?emptylist}', '?emptylist=');
-      assert('{?emptylist*}', '');
+      assert('{?emptylist}', '?emptylist[]=');
+      assert('{?emptylist*}', '?emptylist[]=');
     });
 
     it('variable empty object', function () {
@@ -199,7 +199,7 @@ describe('uri-template', function () {
     it('variable undefined list item', function () {
       assert('{undefinedlistitem}', '1,2');
       assert('{undefinedlistitem*}', '1,2');
-      assert('{?undefinedlistitem*}', '?undefinedlistitem=1&undefinedlistitem=2');
+      assert('{?undefinedlistitem*}', '?undefinedlistitem[]=1&undefinedlistitem[]=2');
     });
 
     it('variable undefined object item', function () {
@@ -241,8 +241,8 @@ describe('uri-template', function () {
       assert('{/list}', '/red,green,blue');
       assert('{;list}', ';list=red,green,blue');
       assert('{.list}', '.red,green,blue');
-      assert('{?list}', '?list=red,green,blue');
-      assert('{&list}', '&list=red,green,blue');
+      assert('{?list}', '?list[]=red&list[]=green&list[]=blue');
+      assert('{&list}', '&list[]=red&list[]=green&list[]=blue');
     });
 
     it('variable associative array expansion', function () {
@@ -264,8 +264,8 @@ describe('uri-template', function () {
       assert('{/list*}', '/red/green/blue');
       assert('{;list*}', ';list=red;list=green;list=blue');
       assert('{.list*}', '.red.green.blue');
-      assert('{?list*}', '?list=red&list=green&list=blue');
-      assert('{&list*}', '&list=red&list=green&list=blue');
+      assert('{?list*}', '?list[]=red&list[]=green&list[]=blue');
+      assert('{&list*}', '&list[]=red&list[]=green&list[]=blue');
 
       assert('{/list*,path:4}', '/red/green/blue/%2Ffoo');
     });
@@ -358,14 +358,14 @@ describe('uri-template', function () {
     it('variable undefined list item', function () {
       assert('{undefinedlistitem}', '1,2');
       assert('{undefinedlistitem*}', '1,2');
-      assert('{?undefinedlistitem*}', '?undefinedlistitem=1&undefinedlistitem=2');
+      assert('{?undefinedlistitem*}', '?undefinedlistitem[]=1&undefinedlistitem[]=2');
     });
 
     it('query with empty/undefined arguments', function () {
       assert('{?var,number}', '?var=value&number=2133');
       assert('{?undef}', '');
       assert('{?emptystring}', '?emptystring=');
-      assert('{?emptylist}', '?emptylist=');
+      assert('{?emptylist}', '?emptylist[]=');
       assert('{?emptyobject}', '?emptyobject=');
       assert('{?undef,var,emptystring}', '?var=value&emptystring=');
     });
