@@ -166,6 +166,7 @@ describe('uri-template', function () {
           'hello': 'Hello World!',
           'path': '/foo/bar',
           'list': ['red', 'green', 'blue'],
+          'encodedlist': ['d&d', '110%', '#1'],
           'keys': {
             'semi': ';',
             'dot': '.',
@@ -200,6 +201,13 @@ describe('uri-template', function () {
       assert('{undefinedlistitem}', '1,2');
       assert('{undefinedlistitem*}', '1,2');
       assert('{?undefinedlistitem*}', '?undefinedlistitem[]=1&undefinedlistitem[]=2');
+    });
+
+    it('variable encoded list', function () {
+      assert('{?encodedlist}', '?encodedlist[]=d%26d&encodedlist[]=110%25&encodedlist[]=%231');
+      assert('{&encodedlist}', '&encodedlist[]=d%26d&encodedlist[]=110%25&encodedlist[]=%231');
+      assert('{?encodedlist*}', '?encodedlist[]=d%26d&encodedlist[]=110%25&encodedlist[]=%231');
+      assert('{&encodedlist*}', '&encodedlist[]=d%26d&encodedlist[]=110%25&encodedlist[]=%231');
     });
 
     it('variable undefined object item', function () {
