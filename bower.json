@@ -1,0 +1,29 @@
+{
+  "name": "url-template",
+  "description": "A URI template implementation (RFC 6570 compliant)",
+  "main": "./lib/url-template.js",
+  "authors": [
+    "Bram Stein <b.l.stein@gmail.com> (http://www.bramstein.com)"
+  ],
+  "license": "BSD",
+  "keywords": [
+    "uri-template",
+    "uri",
+    "template",
+    "uri",
+    "url",
+    "rfc 6570",
+    "url",
+    "template",
+    "url-template"
+  ],
+  "homepage": "https://github.com/bramstein/url-template",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "uritemplate-test"
+  ]
+}
