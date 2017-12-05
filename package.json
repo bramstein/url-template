@@ -1,6 +1,6 @@
 {
   "name": "@reverbdotcom/url-template",
-  "version": "2.0.9",
+  "version": "2.0.10",
   "decription": "A URI template implementation (RFC 6570 compliant)",
   "author": "Bram Stein <b.l.stein@gmail.com> (http://www.bramstein.com)",
   "keywords": [
