@@ -22,6 +22,7 @@
     "url": "git://github.com/bramstein/url-template.git"
   },
   "main": "./lib/url-template.js",
+  "types": "./index.d.ts",
   "directories": {
     "lib": "./lib"
   },
