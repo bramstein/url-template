@@ -1,8 +1,6 @@
 // Type definitions for @reverbdotcom/url-template
 // Project: https://github.com/reverbdotcom/url-template
 
-export namespace urltemplate;
-
 interface BaseContext {
   [key: string]: any;
 }
