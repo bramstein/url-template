@@ -35,3 +35,6 @@ console.log(emailUrl);
 ## A note on error handling and reporting
 
 The RFC states that errors in the templates could optionally be handled and reported to the user. This implementation takes a slightly different approach in that it tries to do a best effort template expansion and leaves erroneous expressions in the returned URI instead of throwing errors. So for example, the incorrect expression `{unclosed` will return `{unclosed` as output. The leaves incorrect URLs to be handled by your URL library of choice.
+
+## related links
+[url-generate](https://github.com/zzzgit/url-generate)
