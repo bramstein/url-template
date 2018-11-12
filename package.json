@@ -27,5 +27,8 @@
   },
   "scripts": {
     "test": "mocha --reporter spec"
-  }
+  },
+  "files": [
+    "lib" 
+  ]
 }
