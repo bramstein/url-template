@@ -17,9 +17,12 @@
     "expect.js": "=0.2.0"
   },
   "license": "BSD",
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/bramstein/url-template.git"
+  "publishConfig": {
+    "registry":"https://npm.pkg.github.com/"
+  },
+  "repository" : {
+    "type" : "git",
+    "url": "ssh://git@github.com/reverbdotcom/url-template.git"
   },
   "main": "./lib/url-template.js",
   "types": "./index.d.ts",
