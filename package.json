@@ -14,8 +14,7 @@
   ],
   "devDependencies": {
     "mocha": "=1.6.0",
-    "expect.js": "=0.2.0",
-    "is-plain-object": "=3.0.1"
+    "expect.js": "=0.2.0"
   },
   "license": "BSD",
   "repository": {
@@ -28,5 +27,8 @@
   },
   "scripts": {
     "test": "mocha --reporter spec"
+  },
+  "dependencies": {
+    "is-plain-object": "=3.0.1"
   }
 }
