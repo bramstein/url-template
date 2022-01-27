@@ -2,10 +2,10 @@ var template, expect;
 
 if (typeof require !== 'undefined') {
   template = require('../lib/url-template.js');
-  expect = require("expect.js");
+  expect = require("chai").expect;
 } else {
   template = window.urltemplate;
-  expect = window.expect;
+  expect = window.chai.expect;
 }
 
 function createTestContext(c) {

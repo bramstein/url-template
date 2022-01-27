@@ -13,7 +13,7 @@
     "url-template"
   ],
   "devDependencies": {
-    "expect.js": "^0.2.0",
+    "chai": "^4.3.6",
     "mocha": "^9.2.0"
   },
   "license": "BSD-3-Clause",
@@ -29,6 +29,6 @@
     "test": "mocha --reporter spec"
   },
   "files": [
-    "lib" 
+    "lib"
   ]
 }
