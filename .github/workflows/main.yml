@@ -13,6 +13,8 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v2
+        with:
+          submodules: true
 
       - name: Set up Node
         uses: actions/setup-node@v2
