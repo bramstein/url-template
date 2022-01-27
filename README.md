@@ -10,11 +10,7 @@ For use with Node.js you can install it through npm:
 $ npm install url-template
 ```
 
-If you want to use it in a browser, copy `lib/url-template.js` into your project and use the global `urltemplate` instance. Alternatively you can use [Bower](http://bower.io/) to install this package:
-
-```sh
-$ bower install url-template
-```
+If you want to use it in a browser, copy `lib/url-template.js` into your project and use the global `urltemplate` instance.
 
 ## Example
 
