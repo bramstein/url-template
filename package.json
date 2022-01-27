@@ -13,8 +13,8 @@
     "url-template"
   ],
   "devDependencies": {
-    "mocha": "=1.6.0",
-    "expect.js": "=0.2.0"
+    "expect.js": "^0.2.0",
+    "mocha": "^9.2.0"
   },
   "license": "BSD-3-Clause",
   "repository": {
