@@ -1,8 +1,6 @@
 import { expect } from 'chai';
-import { readFile } from 'fs/promises';
 import template from '../lib/url-template.js';
-
-const examples = JSON.parse(await readFile(new URL('../uritemplate-test/spec-examples-by-section.json', import.meta.url)));
+import examples from '../uritemplate-test/spec-examples-by-section.json';
 
 function createTestContext(c) {
   return function (t, r) {

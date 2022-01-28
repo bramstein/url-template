@@ -28,7 +28,7 @@
     "node": "^12.20.0 || ^14.13.1 || >=16.0.0"
   },
   "scripts": {
-    "test": "mocha --reporter spec"
+    "test": "node --experimental-json-modules node_modules/mocha/bin/mocha --reporter spec"
   },
   "files": [
     "lib"
