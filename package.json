@@ -1,8 +1,8 @@
 {
   "name": "url-template",
   "version": "2.0.8",
-  "decription": "A URI template implementation (RFC 6570 compliant)",
-  "author": "Bram Stein <b.l.stein@gmail.com> (http://www.bramstein.com)",
+  "description": "A URI template implementation (RFC 6570 compliant)",
+  "author": "Bram Stein <b.l.stein@gmail.com> (https://www.bramstein.com)",
   "keywords": [
     "uri-template",
     "uri template",
@@ -21,9 +21,11 @@
     "type": "git",
     "url": "git://github.com/bramstein/url-template.git"
   },
+  "type": "module",
   "main": "./lib/url-template.js",
-  "directories": {
-    "lib": "./lib"
+  "exports": "./lib/url-template.js",
+  "engines": {
+    "node": "^12.20.0 || ^14.13.1 || >=16.0.0"
   },
   "scripts": {
     "test": "mocha --reporter spec"

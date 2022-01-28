@@ -1,14 +1,8 @@
-var template, expect, examples;
+import { expect } from 'chai';
+import { readFile } from 'fs/promises';
+import template from '../lib/url-template.js';
 
-if (typeof require !== 'undefined') {
-  template = require('../lib/url-template.js');
-  expect = require("chai").expect;
-  examples = require('../uritemplate-test/spec-examples-by-section.json');
-} else {
-  template = window.urltemplate;
-  expect = window.chai.expect;
-  examples = window.examples;
-}
+const examples = JSON.parse(await readFile(new URL('../uritemplate-test/spec-examples-by-section.json', import.meta.url)));
 
 function createTestContext(c) {
   return function (t, r) {
