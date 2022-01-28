@@ -1,14 +1,6 @@
-var template, expect, examples;
-
-if (typeof require !== 'undefined') {
-  template = require('../lib/url-template.js');
-  expect = require("chai").expect;
-  examples = require('../uritemplate-test/spec-examples-by-section.json');
-} else {
-  template = window.urltemplate;
-  expect = window.chai.expect;
-  examples = window.examples;
-}
+import { expect } from 'chai';
+import template from '../lib/url-template.js';
+import examples from '../uritemplate-test/spec-examples-by-section.json';
 
 function createTestContext(c) {
   return function (t, r) {
