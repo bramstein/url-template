@@ -1,9 +1,9 @@
 import { expect } from 'chai';
-import template from '../lib/url-template.js';
+import { parseTemplate } from '../lib/url-template.js';
 
 function createTestContext(c) {
   return function (t, r) {
-    expect(template.parse(t).expand(c)).to.eql(r);
+    expect(parseTemplate(t).expand(c)).to.eql(r);
   };
 }
 
