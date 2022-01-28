@@ -4,21 +4,21 @@ This is a simple URI template implementation following the [RFC 6570 URI Templat
 
 ## Installation
 
-For use with Node.js you can install it through npm:
+For use with Node.js or build tools you can install it through npm:
 
 ```sh
 $ npm install url-template
 ```
 
-If you want to use it in a browser, copy `lib/url-template.js` into your project and use the global `urltemplate` instance.
+If you want to use it directly in a browser use a CDN like [Skypack](https://www.skypack.dev/view/url-template).
 
 ## Example
 
 ```js
-var template = require('url-template');
+import { parseTemplate } from 'url-template';
 
-var emailUrlTemplate = template.parse('/{email}/{folder}/{id}');
-var emailUrl = emailUrlTemplate.expand({
+const emailUrlTemplate = parseTemplate('/{email}/{folder}/{id}');
+const emailUrl = emailUrlTemplate.expand({
   email: 'user@domain',
   folder: 'test',
   id: 42
