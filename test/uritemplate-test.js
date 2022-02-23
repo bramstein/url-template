@@ -1,12 +1,10 @@
-import { readFile } from 'node:fs/promises';
+import { createRequire } from 'node:module';
+import { fileURLToPath as fromURL } from 'node:url';
 import { expect } from 'chai';
 import { parseTemplate } from '../lib/url-template.js';
 
-const examples = JSON.parse(
-  await readFile(
-    new URL('../uritemplate-test/spec-examples-by-section.json', import.meta.url)
-  )
-);
+const require = createRequire(fromURL(import.meta.url));
+const examples = require('../uritemplate-test/spec-examples-by-section.json');
 
 function createTestContext(c) {
   return function (t, r) {
