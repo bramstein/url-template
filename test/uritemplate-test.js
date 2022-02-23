@@ -1,6 +1,10 @@
+import { createRequire } from 'node:module';
+import { fileURLToPath as fromURL } from 'node:url';
 import { expect } from 'chai';
 import { parseTemplate } from '../lib/url-template.js';
-import examples from '../uritemplate-test/spec-examples-by-section.json';
+
+const require = createRequire(fromURL(import.meta.url));
+const examples = require('../uritemplate-test/spec-examples-by-section.json');
 
 function createTestContext(c) {
   return function (t, r) {
