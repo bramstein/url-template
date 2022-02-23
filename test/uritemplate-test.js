@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import { parseTemplate } from '../lib/url-template.js';
-import examples from '../uritemplate-test/spec-examples-by-section.json';
+import examples from '../uritemplate-test/spec-examples-by-section.json' assert { type: 'json' };
 
 function createTestContext(c) {
   return function (t, r) {
