@@ -13,15 +13,15 @@
     "url-template"
   ],
   "devDependencies": {
-    "mocha": "=1.6.0",
-    "expect.js": "=0.2.0"
+    "expect.js": "=0.2.0",
+    "mocha": "^10.2.0"
   },
   "license": "BSD",
   "publishConfig": {
-    "registry":"https://npm.pkg.github.com/"
+    "registry": "https://npm.pkg.github.com/"
   },
-  "repository" : {
-    "type" : "git",
+  "repository": {
+    "type": "git",
     "url": "ssh://git@github.com/reverbdotcom/url-template.git"
   },
   "main": "./lib/url-template.js",
@@ -31,5 +31,8 @@
   },
   "scripts": {
     "test": "mocha --reporter spec"
+  },
+  "dependencies": {
+    "yarn": "^1.22.19"
   }
 }

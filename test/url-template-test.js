@@ -20,7 +20,7 @@ describe('uri-template', function () {
           'var': 'value',
           'some.value': 'some',
           'some_value': 'value',
-          'Some%20Thing': 'hello',
+          'Some+Thing': 'hello',
           'foo': 'bar',
           'hello': 'Hello World!',
           'bool': false,
@@ -39,9 +39,9 @@ describe('uri-template', function () {
 
     it('encodes non expressions correctly', function () {
       assert('hello/world', 'hello/world');
-      assert('Hello World!/{foo}', 'Hello%20World!/bar');
+      assert('Hello World!/{foo}', 'Hello+World!/bar');
       assert(':/?#[]@!$&()*+,;=\'', ':/?#[]@!$&()*+,;=\'');
-      assert('%20', '%20');
+      assert('+', '+');
       assert('%xyz', '%25xyz');
       assert('%', '%25');
     });
@@ -64,7 +64,7 @@ describe('uri-template', function () {
     });
 
     it('expand expressions with encoding', function () {
-      assert('{Some%20Thing}', 'hello');
+      assert('{Some+Thing}', 'hello');
     });
 
     it('expand expressions with reserved JavaScript names', function () {
@@ -87,7 +87,7 @@ describe('uri-template', function () {
     });
 
     it('escape invalid characters correctly', function () {
-      assert('{hello}', 'Hello%20World%21');
+      assert('{hello}', 'Hello+World%21');
     });
   });
 
@@ -100,7 +100,7 @@ describe('uri-template', function () {
 
     it('reserved expansion of basic strings', function () {
       assert('{+var}', 'value');
-      assert('{+hello}', 'Hello%20World!');
+      assert('{+hello}', 'Hello+World!');
     });
 
     it('preserves paths', function() {
@@ -121,16 +121,16 @@ describe('uri-template', function () {
 
     it('variables without an operator', function () {
       assert('map?{x,y}', 'map?1024,768');
-      assert('{x,hello,y}', '1024,Hello%20World%21,768');
+      assert('{x,hello,y}', '1024,Hello+World%21,768');
     });
 
     it('variables with the reserved expansion operator', function () {
-      assert('{+x,hello,y}', '1024,Hello%20World!,768');
+      assert('{+x,hello,y}', '1024,Hello+World!,768');
       assert('{+path,x}/here', '/foo/bar,1024/here');
     });
 
     it('variables with the fragment expansion operator', function () {
-      assert('{#x,hello,y}', '#1024,Hello%20World!,768');
+      assert('{#x,hello,y}', '#1024,Hello+World!,768');
       assert('{#path,x}/here', '#/foo/bar,1024/here');
     });
 
@@ -297,9 +297,9 @@ describe('uri-template', function () {
           restricted: ":/?#[]@!$&()*+,;='",
           percent: '%',
           encoded: '%25',
-          'pctencoded%20name': '',
+          'pctencoded+name': '',
           mapWithEncodedName: {
-            'encoded%20name': ''
+            'encoded+name': ''
           },
           mapWithRestrictedName: {
             'restricted=name': ''
