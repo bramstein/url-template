@@ -1,28 +1,24 @@
-import { createRequire } from 'node:module';
-import { fileURLToPath as fromURL } from 'node:url';
-import { expect } from 'chai';
-import { parseTemplate } from '../lib/url-template.js';
+import assert from 'node:assert/strict';
+import { describe, test } from 'node:test';
+import { parseTemplate } from 'url-template';
+import examples from '../uritemplate-test/spec-examples-by-section.json' assert { type: 'json' };
 
-const require = createRequire(fromURL(import.meta.url));
-const examples = require('../uritemplate-test/spec-examples-by-section.json');
-
-function createTestContext(c) {
-  return function (t, r) {
-    if (typeof r === 'string') {
-      expect(parseTemplate(t).expand(c)).to.eql(r);
+function createTestContext(context) {
+  return (template, result) => {
+    if (typeof result === 'string') {
+      assert.equal(parseTemplate(template).expand(context), result);
     } else {
-      expect(r.indexOf(parseTemplate(t).expand(c)) >= 0).to.be.true;
+      assert.ok(result.includes(parseTemplate(template).expand(context)));
     }
   };
 }
 
-describe('spec-examples', function () {
-  Object.keys(examples).forEach(function (section) {
-    var assert = createTestContext(examples[section].variables);
-    examples[section].testcases.forEach(function (testcase) {
-      it(section + ' ' + testcase[0], function () {
-        assert(testcase[0], testcase[1]);
-      });
-    });
-  });
+describe('spec-examples', () => {
+  for (const [section, example] of Object.entries(examples)) {
+    const assert = createTestContext(example.variables);
+
+    for (const [template, result] of example.testcases) {
+      test(`${section} ${template}`, () => assert(template, result));
+    }
+  }
 });
