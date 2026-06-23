@@ -179,15 +179,21 @@ describe('uri-template', () => {
     test('variable empty list', () => {
       assert('{/emptylist}', '');
       assert('{/emptylist*}', '');
-      assert('{?emptylist}', '?emptylist=');
+      // RFC 6570 section 2.3: a list with zero members is undefined, so a key
+      // operator must not emit a "name=" pair for it (unlike an empty string).
+      assert('{?emptylist}', '');
       assert('{?emptylist*}', '');
+      assert('{&emptylist}', '');
+      assert('{;emptylist}', '');
     });
 
     test('variable empty object', () => {
       assert('{/emptyobject}', '');
       assert('{/emptyobject*}', '');
-      assert('{?emptyobject}', '?emptyobject=');
+      assert('{?emptyobject}', '');
       assert('{?emptyobject*}', '');
+      assert('{&emptyobject}', '');
+      assert('{;emptyobject}', '');
     });
 
     test('variable undefined list item', () => {
@@ -362,8 +368,8 @@ describe('uri-template', () => {
       assert('{?var,number}', '?var=value&number=2133');
       assert('{?undef}', '');
       assert('{?emptystring}', '?emptystring=');
-      assert('{?emptylist}', '?emptylist=');
-      assert('{?emptyobject}', '?emptyobject=');
+      assert('{?emptylist}', '');
+      assert('{?emptyobject}', '');
       assert('{?undef,var,emptystring}', '?var=value&emptystring=');
     });
   });
