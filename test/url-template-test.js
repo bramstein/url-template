@@ -169,6 +169,8 @@ describe('uri-template', () => {
         'ü': 'ü'
       },
       'number': 2133,
+      'clef': '\uD834\uDD1E',
+      'emoji': 'Hi\uD83D\uDE00 there',
       'emptystring': '',
       'emptylist': [],
       'emptyobject': {},
@@ -226,6 +228,13 @@ describe('uri-template', () => {
 
     test('variable modifier prefix converted to string', () => {
       assert('{number:3}', '213');
+    });
+
+    test('variable modifier prefix counts surrogate pairs as one character', () => {
+      assert('{clef:1}', '%F0%9D%84%9E');
+      assert('{+clef:1}', '%F0%9D%84%9E');
+      assert('{?clef:1}', '?clef=%F0%9D%84%9E');
+      assert('{emoji:3}', 'Hi%F0%9F%98%80');
     });
 
     test('variable list expansion', () => {
